@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import authStore from "../../store/store";
-const email = ref("admin@admin.com");
+// import authStore from "../../store/store";
+const email = ref("admin@gmail.com");
 const password = ref("admin");
 </script>
 
@@ -13,7 +13,8 @@ const password = ref("admin");
       <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">
         Welcome Back!
       </h1>
-      <form @submit.prevent="authStore.login(email, password)">
+      <form >
+        <!-- @submit.prevent="authStore.login(email, password)" -->
         <div class="mb-4">
           <label
             for="email"

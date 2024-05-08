@@ -1,5 +1,5 @@
 <script setup>
-import cart from "../../store/cart";
+// import cart from "../../store/cart";
 </script>
 
 <template>
@@ -23,7 +23,7 @@ import cart from "../../store/cart";
       </svg>
       <span
         class="absolute -top-2 left-4 rounded-full bg-red-500 p-0.5 px-2 text-sm text-red-50"
-        >{{ cart.totalCartItems }}</span
+        >14</span
       >
     </div>
   </div>

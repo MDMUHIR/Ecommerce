@@ -1,18 +1,18 @@
 <script setup>
 import { ref, reactive, onBeforeMount } from "vue";
-import authStore from "../../store/store";
-import cart from "../../store/cart";
+// import authStore from "../../store/store";
+// import cart from "../../store/cart";
 
 import AddFev from "../../assets/icons/AddFev.vue";
 
 const products = ref([]);
-onBeforeMount(() => {
-  const res = authStore.fetchPublicApi("/api/products", {}, "GET");
-  res.then((data) => {
-    console.log(data);
-    products.value = data;
-  });
-});
+// onBeforeMount(() => {
+//   const res = authStore.fetchPublicApi("/api/products", {}, "GET");
+//   res.then((data) => {
+//     console.log(data);
+//     products.value = data;
+//   });
+// });
 
 const addedToFev = ref(false);
 </script>

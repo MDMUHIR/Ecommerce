@@ -7,12 +7,22 @@ import Contact from "./views/Contact.vue";
 import Login from "./views/Login.vue";
 import Cart from "./views/Cart.vue";
 import Product from "./views/Product.vue";
+import AdminDB from "./views/admin/AdminDB.vue";
 
 const routes = [
   {
     path: "/",
     component: DefaultLayout,
     children: [
+      {
+        path: "/admindb",
+        name: "admindb",
+        component: AdminDB,
+        meta: {
+          requiresAuth: true,
+          type: "admin",
+        },
+      },
       {
         path: "/",
         name: "home",

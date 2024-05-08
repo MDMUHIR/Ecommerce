@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import CartIco from "../components/reusable/CartIco.vue";
-import authStore from "../store/store";
+// import authStore from "../store/store";
 import dropdown from "./dropdown.vue";
 import Category from "./Category.vue";
 import UserIcon from "../assets/icons/UserIcon.vue";
@@ -87,13 +87,13 @@ import {
         </router-link>
 
         <button
-          v-if="authStore.isAuthenticated"
           @click="togDdMenu()"
           class="relative inline mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
         >
+          <!--  v-if="authStore.isAuthenticated" -->
           <UserIcon />
         </button>
-        <router-link :to="{ name: 'login' }" v-else>
+        <router-link :to="{ name: 'login' }" >
           <button
             class="relative flex mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
           >

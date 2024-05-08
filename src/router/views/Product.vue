@@ -1,20 +1,20 @@
 <script setup>
 import { ref, onBeforeMount } from "vue";
-import authStore from "../../store/store";
-import cart from "../../store/cart";
+// import authStore from "../../store/store";
+// import cart from "../../store/cart";
 
 import { useRoute } from "vue-router";
 const route = useRoute();
 const id = route.params.id;
 
 const product = ref({});
-onBeforeMount(() => {
-  const res = authStore.fetchPublicApi(`/api/products/${id}`, {}, "GET");
-  res.then((data) => {
-    console.log(data);
-    product.value = data;
-  });
-});
+// onBeforeMount(() => {
+//   const res = authStore.fetchPublicApi(`/api/products/${id}`, {}, "GET");
+//   res.then((data) => {
+//     console.log(data);
+//     product.value = data;
+//   });
+// });
 </script>
 
 <template>
@@ -80,7 +80,7 @@ onBeforeMount(() => {
         >
           <p class="text-xl font-black text-gray-800">${{ product.price }}</p>
           <button
-            @click="cart.addItem(product)"
+           
             class="add-cart py-1 px-2 text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white border-2 border-black rounded md:ml-2 mt-2 md:mt-0"
           >
             Add to Cart

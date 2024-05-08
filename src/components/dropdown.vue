@@ -1,11 +1,11 @@
 <script setup>
-import authStore from "../store/store";
+// import authStore from "../store/store";
 import { togDdMenu } from "../store/controller.js";
 </script>
 
 <template>
   <div
-    class=" z-20 w-56 pt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
+    class="z-20 w-56 pt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
   >
     <button
       class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -17,10 +17,12 @@ import { togDdMenu } from "../store/controller.js";
       />
       <div class="mx-1">
         <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">
-          {{ authStore.user.name }}
+          <!-- {{ authStore.user.name }} -->
+          user name
         </h1>
         <p class="text-sm text-gray-500 dark:text-gray-400">
-          {{ authStore.user.email }}
+          <!-- {{ authStore.user.email }} -->
+          email
         </p>
       </div>
     </button>
@@ -80,9 +82,9 @@ import { togDdMenu } from "../store/controller.js";
     </button>
     <hr class="border-gray-200 dark:border-gray-700" />
     <button
-      @click="authStore.logout()"
-      class="flex justify-center items-center  w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+      class="flex justify-center items-center w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
     >
+      <!--  @click="authStore.logout()" -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
