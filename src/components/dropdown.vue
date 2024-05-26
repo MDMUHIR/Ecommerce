@@ -1,5 +1,5 @@
 <script setup>
-// import authStore from "../store/store";
+import { isAuthenticated, user, logout } from "../store/store";
 import { togDdMenu } from "../store/controller.js";
 </script>
 
@@ -17,71 +17,71 @@ import { togDdMenu } from "../store/controller.js";
       />
       <div class="mx-1">
         <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">
-          <!-- {{ authStore.user.name }} -->
-          user name
+          {{ user.name }}
         </h1>
         <p class="text-sm text-gray-500 dark:text-gray-400">
-          <!-- {{ authStore.user.email }} -->
-          email
+          {{ user.email }}
         </p>
       </div>
     </button>
 
     <hr class="border-gray-200 dark:border-gray-700" />
-
-    <button
-      class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      view profile
-    </button>
-
-    <button
-      class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        class="w-5 h-5 mr-2"
+    <template v-if="'customer' == user.type">
+      <button
+        class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
       >
-        <path
-          fill-rule="evenodd"
-          d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z"
-          clip-rule="evenodd"
-        />
-      </svg>
+        view profile
+      </button>
 
-      Saved
-    </button>
+      <button
+        class="flex items-center justify-center w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="w-5 h-5 mr-2"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z"
+            clip-rule="evenodd"
+          />
+        </svg>
 
+        Saved
+      </button>
+
+      <button
+        class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        Orders
+      </button>
+
+      <hr class="border-gray-200 dark:border-gray-700" />
+
+      <button
+        class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        Invite Friends
+      </button>
+
+      <hr class="border-gray-200 dark:border-gray-700" />
+
+      <button
+        class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        Help & Support
+      </button>
+      <button
+        class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        Contact
+      </button>
+      <hr class="border-gray-200 dark:border-gray-700" />
+    </template>
     <button
-      class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      Orders
-    </button>
-
-    <hr class="border-gray-200 dark:border-gray-700" />
-
-    <button
-      class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      Invite Friends
-    </button>
-
-    <hr class="border-gray-200 dark:border-gray-700" />
-
-    <button
-      class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      Help & Support
-    </button>
-    <button
-      class="block w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      Contact
-    </button>
-    <hr class="border-gray-200 dark:border-gray-700" />
-    <button
+      @click="logout()"
       class="flex justify-center items-center w-full px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
     >
       <!--  @click="authStore.logout()" -->

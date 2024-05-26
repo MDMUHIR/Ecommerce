@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import CartIco from "../components/reusable/CartIco.vue";
-// import authStore from "../store/store";
+import CartIco from "../assets/icons/CartIco.vue";
+import { user, isAuthenticated } from "../store/store";
 import dropdown from "./dropdown.vue";
 import Category from "./Category.vue";
 import UserIcon from "../assets/icons/UserIcon.vue";
@@ -22,7 +22,7 @@ import {
         class="nav-home flex justify-center items-center h-full px-2 oreder-1"
       >
         <router-link :to="{ name: 'home' }">
-          <button class="font-bold text-2xl">Ecommerce</button>
+          <button class="font-bold text-2xl">MegaCommerce</button>
         </router-link>
       </div>
 
@@ -52,7 +52,12 @@ import {
             </svg>
           </button>
         </div>
-        <div class="nav-items flex justify-center items-center gap-4">
+
+        <!-- -------------------------------------------
+        nav customer items
+        ------------------------------------------- -->
+
+        <div class="nav-customer-items flex justify-center items-center gap-4">
           <router-link :to="{ name: 'products' }">
             <button
               class="nav-item text-sm font-semibold relative inline mx-2 before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
@@ -87,13 +92,13 @@ import {
         </router-link>
 
         <button
+          v-if="isAuthenticated"
           @click="togDdMenu()"
           class="relative inline mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
         >
-          <!--  v-if="authStore.isAuthenticated" -->
           <UserIcon />
         </button>
-        <router-link :to="{ name: 'login' }" >
+        <router-link v-else :to="{ name: 'login' }">
           <button
             class="relative flex mx-2 text-sm font-medium before:bg-orange-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100 p-0"
           >

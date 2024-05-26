@@ -1,9 +1,9 @@
 <script setup>
 import { ref, reactive, onBeforeMount } from "vue";
-// import authStore from "../../store/store";
 // import cart from "../../store/cart";
 
 import AddFev from "../../assets/icons/AddFev.vue";
+import { fetchPublicApi, apiBase } from "../../store/store";
 
 const products = ref([]);
 // onBeforeMount(() => {
@@ -14,14 +14,23 @@ const products = ref([]);
 //   });
 // });
 
+onBeforeMount(() => {
+  const res = fetchPublicApi("/api/products", {}, "GET");
+  res.then((response) => {
+    console.log(response);
+    products.value = response.data;
+  });
+});
+
 const addedToFev = ref(false);
 </script>
 
 <template>
-  <div class="main bg-gray-100 pt-24 pb-12">
+  <div class="main pb-12">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4 min-h-screen"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-4"
     >
+      
       <div class="mx-auto px-5" v-for="product in products" :key="product.id">
         <div
           class="max-w-xs min-w-56 h-80 rounded-lg bg-white p-2 pt-3 shadow duration-150 hover:scale-105 hover:shadow-md"
@@ -29,14 +38,14 @@ const addedToFev = ref(false);
           <router-link :to="{ name: 'product', params: { id: product.id } }">
             <img
               class="rounded-lg h-4/6 object-center cursor-pointer mx-auto"
-              :src="product.image"
+              :src="apiBase + '/' + product.image"
               alt="product"
             />
           </router-link>
           <div class="middle flex justify-between">
             <router-link :to="{ name: 'product', params: { id: product.id } }">
               <p class="my-4 pl-4 font-bold text-gray-500">
-                {{ product.title }}
+                {{ product.name }}
               </p>
             </router-link>
             <button class="w-6">

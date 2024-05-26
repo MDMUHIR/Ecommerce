@@ -78,6 +78,7 @@ const toggleSubCategory = (subCategoryName) => {
             />
           </svg>
         </p>
+        
       </div>
       <!-- category -->
 
@@ -86,8 +87,10 @@ const toggleSubCategory = (subCategoryName) => {
         v-for="(subCategory, subCategoryName) in category"
         :key="subCategoryName"
         class="ml-4 p-1"
+        
       >
         <!-- Sub category -->
+        
         <div class="ps-6 pr-8 flex justify-between items-center">
           <button
             @click="toggleSubCategory(subCategoryName)"
@@ -140,6 +143,7 @@ const toggleSubCategory = (subCategoryName) => {
       </div>
     </div>
     <hr class="border-gray-200 mt-5 dark:border-gray-700" />
+    .
     <button
       @click="togCategoryMenu()"
       class="Close w-full py-1 border-gray-200 hover:bg-gray-700 px-5 text-red-600 font-semibold text-center "

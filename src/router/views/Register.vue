@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import { errors, login, loader } from "../../store/store";
-const email = ref("admin@gmail.com");
-const password = ref("admin");
+import { errors, register, loader } from "../../store/store";
+const name = ref("");
+const email = ref("");
+const password = ref("");
 import Loader from "../../components/reusable/Loader.vue";
 </script>
 
@@ -13,9 +14,24 @@ import Loader from "../../components/reusable/Loader.vue";
       class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md"
     >
       <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">
-        Welcome Back!
+        Sign up with new Account!
       </h1>
-      <form @submit.prevent="login(email, password)">
+      <form @submit.prevent="register(name, email, password)">
+        <div class="mb-4">
+          <label
+            for="name"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >Name</label
+          >
+          <input
+            v-model="name"
+            type="text"
+            id="name"
+            class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
         <div class="mb-4">
           <label
             for="email"
@@ -30,11 +46,8 @@ import Loader from "../../components/reusable/Loader.vue";
             placeholder="your@email.com"
             required
           />
-          <p
-            class="text-xs text-red-500 font-bold mt-1"
-            v-if="errors == 'Unauthorized'"
-          >
-            ⚠️Wrong Credentials. Try again..!
+          <p class="text-xs text-red-500 font-bold mt-1" v-if="errors">
+            ⚠️{{ errors.email }}
           </p>
         </div>
         <div class="mb-4">
@@ -51,11 +64,12 @@ import Loader from "../../components/reusable/Loader.vue";
             placeholder="Enter your password"
             required
           />
-          <a
+
+          <!-- <a
             href="#"
             class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Forgot Password?</a
-          >
+          > -->
         </div>
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center">
@@ -71,17 +85,19 @@ import Loader from "../../components/reusable/Loader.vue";
               >Remember me</label
             >
           </div>
-          <router-link :to="{ name: 'register' }">
-            <a class="text-xs text-indigo-500 hover:text-indigo-700">
-              Create Account
-            </a>
+          <router-link :to="{ name: 'login' }">
+            <button
+              class="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none"
+            >
+              Already have a Account?
+            </button>
           </router-link>
         </div>
         <button
           type="submit"
           class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Login
+          Sign Up
         </button>
       </form>
     </div>

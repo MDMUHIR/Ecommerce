@@ -17,12 +17,26 @@ const togCategoryMenu = () => {
 const showWelcomeToast = (userName) => {
   console.log(userName);
   toast(`Welcome ${userName} 💐`, {
-    theme: "auto",
+    theme: "dark",
     type: "success",
-    position: "top-center",
+    autoClose: 2000,
+    position: "bottom-center",
     dangerouslyHTMLString: true,
   });
 };
+const showSignUpToast = (userName) => {
+  console.log(userName);
+  toast(`Congratulations you have successfully created an account💐`, {
+    theme: "colored",
+    type: "success",
+    position: "bottom-center",
+    autoClose: 2000,
+    transition: "flip",
+    dangerouslyHTMLString: true,
+  });
+};
+
+const loader = ref(false);
 
 export {
   showDdMenu,
@@ -30,4 +44,6 @@ export {
   showCategoryMenu,
   togCategoryMenu,
   showWelcomeToast,
+  showSignUpToast,
+  loader,
 };
